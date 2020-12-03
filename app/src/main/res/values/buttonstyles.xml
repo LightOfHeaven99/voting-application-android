@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="button">
+        <item name="android:textAppearance">@style/ButtonRoboto14Pt</item>
+    </style>
+    <style name="button.primary">
+        <item name="android:background">@drawable/primary_button_background</item>
+    </style>
+</resources>
