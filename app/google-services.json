@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "141502882666",
+    "project_id": "voting-application-d6d3f",
+    "storage_bucket": "voting-application-d6d3f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141502882666:android:70bd5f043cced4b384bb13",
+        "android_client_info": {
+          "package_name": "com.glowczes.votingapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "141502882666-arg7tt1tm6cretprc37ldhur41b78s11.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-NiYBERYcVILdx-d8Xu5OtI8UOglgMvs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "141502882666-arg7tt1tm6cretprc37ldhur41b78s11.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

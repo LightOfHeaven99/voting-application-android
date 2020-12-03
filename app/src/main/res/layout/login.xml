@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:imeOptions="actionNext"
                     android:inputType="textAutoComplete"
-                    android:text="@={viewModel.emailText}"
+                    android:id="@+id/email"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
-                    android:text="@={viewModel.passwordText}"
+                    android:id="@+id/password"
                     android:textSize="16sp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
