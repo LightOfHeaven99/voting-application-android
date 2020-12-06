@@ -1,5 +1,6 @@
 package com.glowczes.votingapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
+
+    LoginActivity la = this;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,8 +49,11 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.d("TAG", "signInWithEmail:success");
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            startActivity(new Intent(la.getApplicationContext(), MainActivity.class));
+                            Toast.makeText(getApplicationContext(), "Zalogowano", Toast.LENGTH_SHORT).show();
                         } else {
                             Log.w("TAG", "signInWithEmail:failure", task.getException());
+                            Toast.makeText(getApplicationContext(), "Niepoprawne dane logowania!", Toast.LENGTH_SHORT).show();
                         }
 
                     }

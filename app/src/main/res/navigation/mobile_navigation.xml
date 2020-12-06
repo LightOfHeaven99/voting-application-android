@@ -22,4 +22,8 @@
         android:name="com.glowczes.votingapplication.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.glowczes.votingapplication.ui.ProfileActivity"
+        android:label="ProfileActivity" />
 </navigation>
