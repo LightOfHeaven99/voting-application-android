@@ -12,15 +12,10 @@
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="additional_participants">+%1$d</string>
-    <string name="log_in">Logowanie</string>
-    <string name="email_address">Email address</string>
-    <string name="password">Password</string>
-    <string name="or">  or  </string>
-    <string name="dont_have_account">Don\'t have an account? </string>
-    <string name="sign_up">Sign Up</string>
-    <string name="forgot_password">Forgot password?</string>
-    <string name="have_account">Already have an account?</string>
-    <string name="register">Register</string>
+    <string name="log_in">Zaloguj</string>
+    <string name="email_address">Adres email</string>
+    <string name="password">Hasło</string>
+    <string name="or">  lub  </string>
     <string name="wyloguj">Wyloguj</string>
     <string name="profil">Profil</string>
 
