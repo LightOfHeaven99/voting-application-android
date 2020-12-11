@@ -13,15 +13,23 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
     LoginActivity la = this;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,8 +57,33 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.d("TAG", "signInWithEmail:success");
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            startActivity(new Intent(la.getApplicationContext(), MainActivity.class));
-                            Toast.makeText(getApplicationContext(), "Zalogowano", Toast.LENGTH_SHORT).show();
+                            if (user != null) {
+                                Map<String, Object> _user = new HashMap<>();
+                                _user.put("name", user.getDisplayName());
+                                _user.put("email", user.getEmail());
+                                if (Objects.equals(user.getEmail(), "pawel.glowczewski@best.wroclaw.pl")) {
+                                    _user.put("isAdmin", true);
+                                } else {
+                                    _user.put("isAdmin", false);
+                                }
+                                db.collection("Users")
+                                        .document(user.getUid())
+                                        .set(_user)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                startActivity(new Intent(la.getApplicationContext(), MainActivity.class));
+                                                Toast.makeText(getApplicationContext(), "Zalogowano", Toast.LENGTH_SHORT).show();
+                                                finish();
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.e("error", e.getMessage());
+                                            }
+                                        });
+                            }
                         } else {
                             Log.w("TAG", "signInWithEmail:failure", task.getException());
                             Toast.makeText(getApplicationContext(), "Niepoprawne dane logowania!", Toast.LENGTH_SHORT).show();
