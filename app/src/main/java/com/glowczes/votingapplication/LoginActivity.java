@@ -12,14 +12,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -29,7 +38,12 @@ import java.util.Objects;
 public class LoginActivity extends AppCompatActivity {
 
     LoginActivity la = this;
+//    GoogleSignInOptions gsio = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//            .requestEmail()
+//            .build();
+//    GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gsio);
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                if((boolean)_user.get("isAdmin")) {
+                                                if ((boolean) _user.get("isAdmin")) {
                                                     startActivity(new Intent(la.getApplicationContext(), MainActivity.class));
                                                     Toast.makeText(getApplicationContext(), "Zalogowano", Toast.LENGTH_SHORT).show();
                                                     finish();
@@ -99,4 +113,85 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
+    // Logowanie z Google
+//
+//    private void signIn() {
+//        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+//        startActivityForResult(signInIntent, 1);
+//    }
+//
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if (requestCode == 1) {
+//            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+//            try {
+//                GoogleSignInAccount account = task.getResult(ApiException.class);
+//                Log.d("Tag", "firebaseAuthWithGoogle:" + account.getId());
+//                firebaseAuthWithGoogle(account.getIdToken());
+//            } catch (ApiException e) {
+//                Log.w("TAG", "Google sign in failed", e);
+//            }
+//        }
+//    }
+//
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//    }
+//
+//    private void firebaseAuthWithGoogle(String idToken) {
+//        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+//        mAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            Log.d("TAG", "Zalogowano!");
+//                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                            if (user != null) {
+//                                final Map<String, Object> _user = new HashMap<>();
+//                                _user.put("name", user.getDisplayName());
+//                                _user.put("email", user.getEmail());
+//                                if (Objects.equals(user.getEmail(), "pawel.glowczewski@best.wroclaw.pl")) {
+//                                    _user.put("isAdmin", true);
+//                                } else {
+//                                    _user.put("isAdmin", false);
+//                                }
+//                                db.collection("Users")
+//                                        .document(user.getUid())
+//                                        .set(_user)
+//                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                            @Override
+//                                            public void onSuccess(Void aVoid) {
+//                                                if ((boolean) _user.get("isAdmin")) {
+//                                                    startActivity(new Intent(la.getApplicationContext(), MainActivity.class));
+//                                                    Toast.makeText(getApplicationContext(), "Zalogowano", Toast.LENGTH_SHORT).show();
+//                                                    finish();
+//                                                } else {
+//                                                    startActivity(new Intent(la.getApplicationContext(), NotAdminMainActivity.class));
+//                                                    Toast.makeText(getApplicationContext(), "Zalogowano", Toast.LENGTH_SHORT).show();
+//                                                    finish();
+//                                                }
+//
+//                                            }
+//                                        })
+//                                        .addOnFailureListener(new OnFailureListener() {
+//                                            @Override
+//                                            public void onFailure(@NonNull Exception e) {
+//                                                Log.e("error", e.getMessage());
+//                                            }
+//                                        });
+//                            }
+//                        } else {
+//                            Log.w("TAG", "signInWithEmail:failure", task.getException());
+//                            Toast.makeText(getApplicationContext(), "Niepoprawne dane logowania!", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
+//    }
 }
