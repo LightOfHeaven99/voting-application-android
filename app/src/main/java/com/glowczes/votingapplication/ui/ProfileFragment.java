@@ -17,7 +17,7 @@ import com.glowczes.votingapplication.InitActivity;
 import com.glowczes.votingapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ProfileActivity extends Fragment {
+public class ProfileFragment extends Fragment {
 
     @Nullable
     @Override

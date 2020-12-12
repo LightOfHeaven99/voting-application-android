@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/not_admin_navigation"
+    app:startDestination="@id/votingFragment">
+
+    <fragment
+        android:id="@+id/profileActivity"
+        android:name="com.glowczes.votingapplication.ui.ProfileFragment"
+        android:label="ProfileActivity" />
+    <fragment
+        android:id="@+id/votingFragment"
+        android:name="com.glowczes.votingapplication.ui.VotingFragment"
+        android:label="VotingFragment" />
+</navigation>

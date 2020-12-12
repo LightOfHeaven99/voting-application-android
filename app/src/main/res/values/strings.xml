@@ -18,5 +18,13 @@
     <string name="or">  lub  </string>
     <string name="wyloguj">Wyloguj</string>
     <string name="profil">Profil</string>
+    <string name="vote">Głosowanie</string>
+    <string name="about">Opis:</string>
+    <string name="candidate_name">Imię kandydata</string>
+    <string name="voting_name">Nazwa głosowania</string>
+    <string name="candidates">Kandydaci</string>
+    <string name="add">Dodaj</string>
+    <string name="add_new_vote">Dodaj nowe głosowanie</string>
+    <string name="archived_votes">Zarchiwizowane głosowania</string>
 
 </resources>

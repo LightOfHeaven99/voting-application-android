@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="16dp">
+    <EditText
+        android:id="@+id/add_new_vote_vote_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:hint="@string/voting_name"
+        android:gravity="center"
+        style="@style/TitleRoboto20Pt"
+        />
+    <TextView
+        android:id="@+id/add_new_vote_add_candidate_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/candidates"
+        app:layout_constraintTop_toBottomOf="@id/add_new_vote_vote_name"
+        android:layout_marginTop="10dp"
+        style="@style/Roboto14Pt"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/add_new_vote_add_candidate_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/add_new_vote_add_candidate_text"
+        android:layout_marginTop="10dp">
+        <include
+            android:id="@+id/add_new_vote_add_candidate"
+            layout="@layout/add_candidate" />
+        <Button
+            android:id="@+id/add_new_vote_add_candidate_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/add_new_vote_add_candidate"
+            android:text="@string/add"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/add_new_vote_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_new_vote_add_candidate_container"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

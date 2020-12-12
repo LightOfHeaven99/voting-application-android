@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/not_admin_vote"
+        android:title="@string/vote"
+        android:icon="@drawable/vote_icon64"
+        />
+    <item
+        android:id="@+id/not_admin_profile"
+        android:title="@string/profil"
+        android:icon="@drawable/user_icon64"
+        />
+</menu>

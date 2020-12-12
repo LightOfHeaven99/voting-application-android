@@ -2,8 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ImageView
+        android:id="@+id/profile_logo"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="32dp"
+        android:src="@drawable/best_logo"/>
     <TextView
         android:id="@+id/profile_email"
         android:layout_width="wrap_content"
@@ -11,17 +19,32 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/profile_logo"
+        tools:text="pawel.glowczewski@best.wroclaw.pl"
+        style="@style/TitleRoboto20Pt"
+        app:layout_constraintVertical_bias="0.2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/profile_email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/Roboto14Pt"
+        android:textColor="@color/colorPrimary"
+        tools:text="Administrator"
+        android:layout_marginTop="32dp"
+        />
 
     <Button
         android:id="@+id/profile_logout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/wyloguj"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/profile_email" />
+        android:layout_margin="16dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d("TAG", "signInWithEmail:success");
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             if (user != null) {
-                                Map<String, Object> _user = new HashMap<>();
+                                final Map<String, Object> _user = new HashMap<>();
                                 _user.put("name", user.getDisplayName());
                                 _user.put("email", user.getEmail());
                                 if (Objects.equals(user.getEmail(), "pawel.glowczewski@best.wroclaw.pl")) {
@@ -72,9 +72,16 @@ public class LoginActivity extends AppCompatActivity {
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                startActivity(new Intent(la.getApplicationContext(), MainActivity.class));
-                                                Toast.makeText(getApplicationContext(), "Zalogowano", Toast.LENGTH_SHORT).show();
-                                                finish();
+                                                if((boolean)_user.get("isAdmin")) {
+                                                    startActivity(new Intent(la.getApplicationContext(), MainActivity.class));
+                                                    Toast.makeText(getApplicationContext(), "Zalogowano", Toast.LENGTH_SHORT).show();
+                                                    finish();
+                                                } else {
+                                                    startActivity(new Intent(la.getApplicationContext(), NotAdminMainActivity.class));
+                                                    Toast.makeText(getApplicationContext(), "Zalogowano", Toast.LENGTH_SHORT).show();
+                                                    finish();
+                                                }
+
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {

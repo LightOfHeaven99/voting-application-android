@@ -43,10 +43,8 @@ public class MainActivity extends AppCompatActivity {
         View nv = navigationView.getHeaderView(0);
         TextView textView = (TextView) nv.findViewById(R.id.textView);
         textView.setText(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail());
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_profile, R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_profile, R.id.nav_home, R.id.nav_add_new_vote)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

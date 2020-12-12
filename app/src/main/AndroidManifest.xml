@@ -26,6 +26,7 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+        <activity android:name=".NotAdminMainActivity" android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
