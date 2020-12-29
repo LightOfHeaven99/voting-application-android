@@ -42,7 +42,16 @@
         android:id="@+id/add_new_vote_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/add_new_vote_add_vote"
+        android:layout_marginBottom="10dp"
         app:layout_constraintTop_toBottomOf="@id/add_new_vote_add_candidate_container"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    <Button
+        android:id="@+id/add_new_vote_add_vote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/dodaj_g_osowanie" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

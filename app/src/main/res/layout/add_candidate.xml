@@ -9,61 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
-        <ImageView
-            android:id="@+id/add_candidate_item_profile"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
+
+        <EditText
+            android:id="@+id/add_candidate_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            style="@style/TitleRoboto20Pt"
+            android:hint="@string/candidate_name"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@drawable/plus_icon64"
-            android:padding="32dp"
-            />
+            android:textSize="16sp"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintStart_toEndOf="@id/add_candidate_item_profile"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="16dp">
-            <EditText
-                android:id="@+id/add_candidate_item_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                style="@style/TitleRoboto20Pt"
-                android:hint="@string/candidate_name"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/add_candidate_item_about_section"
-                android:textSize="16sp"/>
-
-            <LinearLayout
-                android:id="@+id/add_candidate_item_about_section"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/add_candidate_item_name">
-
-                <TextView
-                    style="@style/CaptionRoboto12PtBlack"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/about" />
-
-                <EditText
-                    android:id="@+id/add_candidate_item_about"
-                    style="@style/Roboto14Pt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/about"
-                    android:maxLines="2"
-                    />
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

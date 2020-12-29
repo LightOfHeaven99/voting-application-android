@@ -26,5 +26,6 @@
     <string name="add">Dodaj</string>
     <string name="add_new_vote">Dodaj nowe głosowanie</string>
     <string name="archived_votes">Zarchiwizowane głosowania</string>
+    <string name="dodaj_g_osowanie">Dodaj głosowanie</string>
 
 </resources>

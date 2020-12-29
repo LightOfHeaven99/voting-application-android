@@ -8,6 +8,7 @@ import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +17,12 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.glowczes.votingapplication.models.Candidate;
+import com.glowczes.votingapplication.models.Vote;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.core.FirestoreClient;
+import com.google.firestore.v1.WriteResult;
 
 import org.w3c.dom.Text;
 
@@ -44,7 +51,25 @@ public class NewVoteFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((CandidatesAdapter)candidatesAdapter).addCandidate(resetCandidate());
+                ((CandidatesAdapter) candidatesAdapter).addCandidate(resetCandidate());
+            }
+        });
+        Button acc_button = requireView().findViewById(R.id.add_new_vote_add_vote);
+        acc_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                TextView tv = requireView().findViewById(R.id.add_new_vote_vote_name);
+                String vote_name = tv.getText().toString();
+                String id = db.collection("Votes").document().getId();
+                Vote vote = new Vote();
+                vote.name = vote_name;
+                db.collection("Votes").add(vote.toMap()).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+
+                    }
+                });
             }
         });
     }
@@ -52,17 +77,12 @@ public class NewVoteFragment extends Fragment {
     private Candidate resetCandidate() {
         View layout = requireView().findViewById(R.id.add_new_vote_add_candidate);
         TextView candidateName = layout.findViewById(R.id.add_candidate_item_name);
-        TextView candidateAbout = layout.findViewById(R.id.add_candidate_item_about);
 
-        //narazie zdjęcia nie są obsługiwane
-        ImageView candidateProfile = layout.findViewById(R.id.add_candidate_item_profile);
 
         Candidate candidate = new Candidate();
-        candidate.about = candidateAbout.getText().toString();
         candidate.name = candidateName.getText().toString();
 
         candidateName.setText(null);
-        candidateAbout.setText(null);
 
         return candidate;
     }
@@ -81,7 +101,7 @@ class CandidatesAdapter extends RecyclerView.Adapter<CandidateViewHolder> {
     }
 
     public void deleteItem(int position) {
-        if(c.remove(position) != null)
+        if (c.remove(position) != null)
             notifyDataSetChanged();
     }
 
@@ -132,11 +152,8 @@ class CandidateViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Candidate c) {
-        ImageView profile = itemView.findViewById(R.id.candidate_item_profile);
         TextView name = itemView.findViewById(R.id.candidate_item_name);
-        TextView about = itemView.findViewById(R.id.candidate_item_about);
 
         name.setText(c.name);
-        about.setText(c.about);
     }
 }
