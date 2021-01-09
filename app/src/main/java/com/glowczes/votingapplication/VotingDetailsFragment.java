@@ -214,6 +214,7 @@ class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         if(dragFrom == -1) {
             dragFrom =  fromPosition;
         }
+
         dragTo = toPosition;
 
         if(dragFrom != -1 && dragTo != -1 && dragFrom != dragTo) {
@@ -233,11 +234,9 @@ class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         if(dragFrom == 0 || dragTo == ((DetailsCandidatesAdapter)adapter).c.size()){
             return;
         }
-        int x = dragFrom-1;
-        int y = dragTo-1;
         ArrayList<Candidate> w = ((DetailsCandidatesAdapter)adapter).c;
-        Collections.swap(w, x == -1 ? 0 : x, y == -1 ? 0 : y);
-        adapter.notifyItemMoved(x == -1 ? 0 : x, y == -1 ? 0 : y);
+        Collections.swap(w, dragFrom, dragTo == -1 ? 0 : dragTo);
+//        adapter.notifyItemMoved(dragFrom, dragTo == -1 ? 0 : dragTo);
     }
 
     @Override

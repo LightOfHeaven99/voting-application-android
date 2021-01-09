@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +18,8 @@ import com.glowczes.votingapplication.R;
 import com.glowczes.votingapplication.models.Vote;
 import com.glowczes.votingapplication.ui.home.HomeFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -111,14 +114,32 @@ class VotingViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                VotingDetailsFragment f = new VotingDetailsFragment();
+                final VotingDetailsFragment f = new VotingDetailsFragment();
                 Bundle args = new Bundle();
                 args.putString("id", vote.id);
                 f.setArguments(args);
-                fragment.getParentFragmentManager().beginTransaction()
-                        .replace(R.id.not_admin_fragment_container, f)
-                        .addToBackStack(f.toString())
-                        .commit();
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String userId = user.getUid();
+
+                db.collection("Votes")
+                        .document(vote.id)
+                        .collection("voters")
+                        .document(userId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(documentSnapshot.exists())
+                            Toast.makeText(fragment.requireContext(), "Już zagłosowałeś!", Toast.LENGTH_LONG).show();
+                        else {
+                            fragment.getParentFragmentManager().beginTransaction()
+                                    .replace(R.id.not_admin_fragment_container, f)
+                                    .addToBackStack(f.toString())
+                                    .commit();
+                        }
+                    }
+                });
+
+
             }
         });
 
