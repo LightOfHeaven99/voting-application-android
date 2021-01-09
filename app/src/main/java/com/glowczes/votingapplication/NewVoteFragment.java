@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.glowczes.votingapplication.models.Candidate;
 import com.glowczes.votingapplication.models.Vote;
+import com.glowczes.votingapplication.ui.home.HomeFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -64,10 +65,15 @@ public class NewVoteFragment extends Fragment {
                 String id = db.collection("Votes").document().getId();
                 Vote vote = new Vote();
                 vote.name = vote_name;
-                db.collection("Votes").add(vote.toMap()).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                vote.id = id;
+                vote.candidate_list = ((CandidatesAdapter)candidatesAdapter).c;
+                db.collection("Votes").document(id).set(vote.toMap()).addOnSuccessListener(new OnSuccessListener() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-
+                    public void onSuccess(Object o) {
+                        getParentFragmentManager().beginTransaction()
+                                .replace(R.id.nav_host_fragment, new HomeFragment())
+                                .addToBackStack(null)
+                                .commit();
                     }
                 });
             }
@@ -77,7 +83,6 @@ public class NewVoteFragment extends Fragment {
     private Candidate resetCandidate() {
         View layout = requireView().findViewById(R.id.add_new_vote_add_candidate);
         TextView candidateName = layout.findViewById(R.id.add_candidate_item_name);
-
 
         Candidate candidate = new Candidate();
         candidate.name = candidateName.getText().toString();
@@ -89,7 +94,7 @@ public class NewVoteFragment extends Fragment {
 }
 
 class CandidatesAdapter extends RecyclerView.Adapter<CandidateViewHolder> {
-    private ArrayList<Candidate> c;
+    public ArrayList<Candidate> c;
 
     public CandidatesAdapter(ArrayList<Candidate> candidates) {
         c = candidates;

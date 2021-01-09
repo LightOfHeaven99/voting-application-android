@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.glowczes.votingapplication.ui.ProfileFragment;
-import com.glowczes.votingapplication.ui.VotingFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class NotAdminMainActivity extends AppCompatActivity {

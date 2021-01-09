@@ -9,6 +9,10 @@
         android:label="ProfileActivity" />
     <fragment
         android:id="@+id/votingFragment"
-        android:name="com.glowczes.votingapplication.ui.VotingFragment"
+        android:name="com.glowczes.votingapplication.VotingFragment"
         android:label="VotingFragment" />
+    <fragment
+        android:id="@+id/votingDetailsFragment"
+        android:name="com.glowczes.votingapplication.VotingDetailsFragment"
+        android:label="VotingDetailsFragment" />
 </navigation>
