@@ -3,13 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/vote_fragment_list"
+    <TextView
+        android:id="@+id/vote_fragment_title"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aktywne Głosowania"
+        style="@style/TitleRoboto20Pt"
+        android:gravity="center"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="20dp"
+        android:id="@+id/vote_fragment_list"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vote_fragment_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="10dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="20dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

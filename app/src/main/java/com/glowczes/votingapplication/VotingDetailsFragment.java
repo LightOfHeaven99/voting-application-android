@@ -72,7 +72,6 @@ public class VotingDetailsFragment extends Fragment {
                     }
                 }
             });
-            Toast.makeText(getContext(), args.getString("id"), Toast.LENGTH_LONG).show();
         }
     }
 

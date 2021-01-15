@@ -19,4 +19,8 @@
         android:id="@+id/nav_add_new_vote"
         android:name="com.glowczes.votingapplication.NewVoteFragment"
         android:label="NewVoteFragment" />
+    <fragment
+        android:id="@+id/voteView"
+        android:name="com.glowczes.votingapplication.ui.home.VoteView"
+        android:label="VoteView" />
 </navigation>

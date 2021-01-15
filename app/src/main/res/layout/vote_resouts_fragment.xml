@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/home_fragment_list"
+        android:id="@+id/vote_results_fragment_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+    <Button
+        android:id="@+id/vote_resuots_fragment_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="10dp"
+        style="@style/button.primary"
+        android:text="Usuń głosowanie"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
